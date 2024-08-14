@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="character-card">
       {characters.map(character => (
         <Character 
         key={character.id}

@@ -6,11 +6,11 @@ const Character = ({ character }) => { // ❗ Add the props
   const [showPlanet, setShowPlanet] = useState(false);
 
   const toggleHomeworld = () => {
-    setShowPlanet(!showPlanet);
+    setShowPlanet(showPlanet && !showPlanet);
   };
 
   return (
-    <div onClick={toggleHomeworld}>
+    <div className="character-card" onClick={toggleHomeworld}>
       <h3 className="character-name">{character.name}</h3>
       {showPlanet && character.homeworld && (
         <p className="character-planet">{character.homeworld.name}</p>
