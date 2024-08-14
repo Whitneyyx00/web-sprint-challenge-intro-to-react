@@ -24,7 +24,7 @@ function App() {
         console.log('Planets:', planets);
 
         const combinedData = people.map(character => {
-          const homeworld = planets.find(planet => planet.id === character.homeworldId);
+          const homeworld = planets.find(planet => planet.url === character.homeworldId);
           return {
             ...character,
             homeworld: homeworld ? homeworld.name : 'Unknown'
