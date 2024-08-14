@@ -45,7 +45,7 @@ function App() {
         <div key={character.id} className='character-card'>
         <Character
         name={character.name}
-        homeworld={character.homeworld}
+        homeworld={character.homeworld.name}
         />
         </div>
       ))}
