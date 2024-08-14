@@ -52,9 +52,17 @@ const config = {
         use: { loader: HTML_LOADER }
       },
       {
-        test: /\.m?js$/,
+        test: /\.js$|jsx/,
         exclude: /node_modules/,
-        use: { loader: BABEL_LOADER },
+        use: {
+           loader: BABEL_LOADER,
+           options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react'
+            ],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -82,7 +90,10 @@ const config = {
       },
     ],
   },
-}
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+};
 
 if (!IS_DEV) {
   config.module.rules.push({
