@@ -42,10 +42,14 @@ function App() {
   return (
     <div className="character-card">
       {characters.map(character => (
+        <div key={character.id} className='character-card'>
         <Character 
-        key={character.id}
-        character={character}
+        id={character.id}
+        name={character.name}
+        birthYear={character.birth_year}
+        homeworld={character.homeworld}
         />
+        </div>
       ))}
     </div>
   );
