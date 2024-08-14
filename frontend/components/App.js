@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className="character-card">
+    <div>
       {characters.length > 0 ? (
         characters.map(character => (
           <Character key={character.url} character={character} />
