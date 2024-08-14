@@ -44,10 +44,7 @@ function App() {
       {characters.map(character => (
         <Character 
         key={character.id}
-        id={character.id}
-        name={character.name}
-        birthYear={character.birth_year}
-        homeworld={character.homeworld}
+        character={character}
         />
       ))}
     </div>

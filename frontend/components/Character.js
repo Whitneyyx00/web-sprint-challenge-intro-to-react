@@ -10,9 +10,11 @@ const Character = ({ character }) => { // ❗ Add the props
   };
 
   return (
-    <div onClick={() => setShowPlanet(!showPlanet)}>
+    <div onClick={toggleHomeworld}>
       <h3 className="character-name">{character.name}</h3>
-      {showPlanet && <p className="character-planet">{character.homeworld.name}</p>}
+      {showPlanet && character.homeworld && (
+        <p className="character-planet">{character.homeworld.name}</p>
+      )}
     </div>
   );
 }
