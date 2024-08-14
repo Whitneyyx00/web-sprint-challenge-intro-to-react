@@ -24,10 +24,10 @@ function App() {
         console.log('Planets:', planets);
 
         const combinedData = people.map(character => {
-          const homeworld = planets.find(planet => planet.url === character.homeworld);
+          const homeworld = planets.find(planet => planet.id === character.homeworldId);
           return {
             ...character,
-            homeworld
+            homeworld: homeworld ? homeworld.name : 'Unknown'
           };
         });
 
@@ -45,13 +45,9 @@ function App() {
 
   return (
     <div>
-      {characters.length > 0 ? (
-        characters.map(character => (
-          <Character key={character.url} character={character} />
-        ))
-      ) : (
-        <p>Loading characters...</p>
-      )}
+      {characters.map(character => (
+        <Character key={character.id} character={character} />
+      ))}
     </div>
   );
 }
