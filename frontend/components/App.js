@@ -18,11 +18,11 @@ function App() {
           axios.get(urlPlanets)
         ]);
 
-        const people = peopleResponse.data;
-        const planets = planetsResponse.data;
+        const people = peopleResponse.data.results;
+        const planets = planetsResponse.data.results;
 
         const combinedData = people.map(character => {
-          const homeworld = planets.find(planet => planet.id === character.homeworld);
+          const homeworld = planets.find(planet => planet.url === character.homeworld);
           return {
             ...character,
             homeworld
@@ -43,7 +43,7 @@ function App() {
     <div className="character-card">
       {characters.length > 0 ? (
       characters.map(character => (
-        <div key={character.id} className='character-card'>
+        <div key={character.url}>
         <Character
         name={character.name}
         homeworld={character.homeworld ? character.homeworld.name : 'Unknown'}
