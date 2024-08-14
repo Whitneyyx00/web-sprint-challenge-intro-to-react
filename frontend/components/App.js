@@ -40,12 +40,15 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h2>Star Wars Characters</h2>
-      <p>See the README of the project for instructions on completing this challenge</p>
-      {/* ❗ Map over the data in state, rendering a Character at each iteration */}
+    <div className="App">
       {characters.map(character => (
-        <Character key={character.id} character={character} />
+        <Character 
+        key={character.id}
+        id={character.id}
+        name={character.name}
+        birthYear={character.birth_year}
+        homeworld={character.homeworld}
+        />
       ))}
     </div>
   );
