@@ -41,14 +41,18 @@ function App() {
 
   return (
     <div className="character-card">
-      {characters.map(character => (
+      {characters.length > 0 ? (
+      characters.map(character => (
         <div key={character.id} className='character-card'>
         <Character
         name={character.name}
-        homeworld={character.homeworld.name}
+        homeworld={character.homeworld ? character.homeworld.name : 'Unknown'}
         />
         </div>
-      ))}
+      ))
+      ) : (
+        <p>Loading characters...</p>
+      )}
     </div>
   );
 }
