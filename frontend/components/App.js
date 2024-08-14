@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
-import Character from './Character'
+import Character from './Character';
 
 const urlPlanets = 'http://localhost:9009/api/planets'
 const urlPeople = 'http://localhost:9009/api/people'
@@ -14,12 +13,12 @@ function App() {
     const fetchData = async () => {
       try {
         const [peopleResponse, planetsResponse] = await Promise.all([
-          axios.get(urlPeople),
-          axios.get(urlPlanets)
+          fetch(urlPeople),
+          fetch(urlPlanets)
         ]);
 
-        const people = peopleResponse.data.results;
-        const planets = planetsResponse.data.results;
+        const people = await peopleResponse.json();
+        const planets = await planetsResponse.json();
 
         const combinedData = people.map(character => {
           const homeworld = planets.find(planet => planet.url === character.homeworld);
@@ -42,14 +41,9 @@ function App() {
   return (
     <div className="character-card">
       {characters.length > 0 ? (
-      characters.map(character => (
-        <div key={character.url}>
-        <Character
-        name={character.name}
-        homeworld={character.homeworld ? character.homeworld.name : 'Unknown'}
-        />
-        </div>
-      ))
+        characters.map(character => (
+          <Character key={character.url} character={character} />
+        ))
       ) : (
         <p>Loading characters...</p>
       )}
