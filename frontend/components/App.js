@@ -20,6 +20,9 @@ function App() {
         const people = await peopleResponse.json();
         const planets = await planetsResponse.json();
 
+        console.log('People:', people);
+        console.log('Planets:', planets);
+
         const combinedData = people.map(character => {
           const homeworld = planets.find(planet => planet.url === character.homeworld);
           return {
@@ -27,6 +30,8 @@ function App() {
             homeworld
           };
         });
+
+        console.log('Combined Data:', combinedData);
 
         setCharacters(combinedData);
 

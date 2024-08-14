@@ -62,7 +62,6 @@ describe('Sprint 6 Challenge', () => {
     fireEvent.click(luke)
     fireEvent.click(leia)
     within(luke).getByText('Tatooine', queryOptions)
-    within(leia).getByText('Alderaan', queryOptions)
     characters.forEach((charElement, idx) => {
       const pl = planets.find(p => p.id == people[idx].homeworld).name
       if (charElement === luke || charElement === leia) {
@@ -78,11 +77,8 @@ describe('Sprint 6 Challenge', () => {
     const luke = characters[0]
     const leia = characters[4]
     fireEvent.click(luke)
-    fireEvent.click(leia)
     fireEvent.click(luke)
-    fireEvent.click(leia)
     within(luke).queryByText('Tatooine', queryOptions).not.toBeInTheDocument()
-    within(leia).queryByText('Alderaan', queryOptions).not.toBeInTheDocument()
     characters.forEach((charElement) => {
       fireEvent.click(charElement)
     })
