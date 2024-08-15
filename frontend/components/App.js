@@ -11,28 +11,29 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const [peopleResponse, planetsResponse] = await Promise.all([
-          fetch(urlPeople),
-          fetch(urlPlanets)
-        ]);
+      const peopleResponse = await
+      fetch(urlPeople);
+      const people = await peopleResponse.json();
 
-        const people = await peopleResponse.json();
-        const planets = await planetsResponse.json();
+      const planetResponse = await 
+      fetch(urlPlanets);
+      const planets = await planetResponse.json();
+    
 
         const combinedData = people.map(character => {
-          const homeworld = planets.find(planet => planet.id ===character.homeWorldId);
+          const homeworld = planets.find(planet => planet.id ===character.homeworld);
           return {
-            ...character,
-            homeworld: homeworld ? { id: homeworld.id, name: homeworld.name } : null
+            id: character.id,
+            name: character.name,
+            homeworld: {
+              id: homeworld.id,
+              name: homeworld.name
+            }
           };
         });
 
         setCharacters(combinedData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    }
 
     fetchData();
   }, []);
