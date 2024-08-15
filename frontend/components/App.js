@@ -24,7 +24,7 @@ function App() {
           const homeworld = planets.find(planet => planet.id ===character.homeWorldId);
           return {
             ...character,
-            homeworld: homeworld ? homeworld.name : null
+            homeworld: homeworld ? { id: homeworld.id, name: homeworld.name } : null
           };
         });
 
