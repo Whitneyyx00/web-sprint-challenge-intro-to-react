@@ -8,7 +8,6 @@ function App() {
   // ❗ Create state to hold the data from the API
   // ❗ Create effects to fetch the data and put it in state
   const [characters, setCharacters] = useState([]);
-  const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +20,15 @@ function App() {
         const people = await peopleResponse.json();
         const planets = await planetsResponse.json();
 
-        setCharacters(peopleData);
-        setPlanets(planetsData);
+        const combinedData = people.map(character => {
+          const homeworld = planets.find(planet => planet.id ===character.homeWorldId);
+          return {
+            ...character,
+            homeworld: homeworld ? homeworld.name : 'Unknown'
+          };
+        });
+
+        setCharacters(combinedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -34,11 +40,7 @@ function App() {
   return (
     <div>
       {characters.map(character => (
-        <Character
-        key={character.id}
-        character={character}
-        planet={planets.find(p => p.id === character.homeworldId)}
-        />
+        <Character key={character.id} character={character} />
       ))}
     </div>
   );
