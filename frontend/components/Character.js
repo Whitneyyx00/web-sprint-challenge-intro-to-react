@@ -5,8 +5,7 @@ const Character = ({ character }) => { // ❗ Add the props
   // ❗ Create a "toggle" click handler to show or remove the homeworld
   const [showPlanet, setShowPlanet] = useState(false);
 
-  const toggleHomeworld = (e) => {
-    e.stopPropagation(); // Prevent event bubbling
+  const toggleHomeworld = () => {
     setShowPlanet(prevState => !prevState);
   };
 
